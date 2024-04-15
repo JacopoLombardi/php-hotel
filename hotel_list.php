@@ -41,19 +41,7 @@
       ]
    ];
 
-
-
-
-
-
-
-
-
-
-
 ?>
-
-
 
 
 
@@ -66,15 +54,41 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
    <!-- BOOTSTRAP -->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+   integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
    <title>Hotel</title>
 </head>
 <body>
 
+   <div class="container  mt-5">
+      <h1 class="mb-4">Lista degli Hotel</h1>
+
+      <div class="d-flex">
+
+         <?php foreach($hotels as $hotel): ?>
+
+         <div class="card  col-3">
+
+            <p> <?php echo $hotel['name'] ?> </p>
 
 
+            <p> <?php echo $hotel['description'] ?> </p>
 
+
+            <p> <?php echo $hotel['parking'] ?> </p>
+
+
+            <p> <?php echo $hotel['vote'] ?> </p>
+
+            <p> <?php echo $hotel['distance_to_center'] ?> </p>
+
+         </div>
+
+         <?php endforeach ?>
+
+      </div>
+   </div>
    
 </body>
 </html>
