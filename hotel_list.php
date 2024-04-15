@@ -2,7 +2,7 @@
 <!-- PHP -->
 <?php
 
-   // arrayi degli hotel
+   // array degli hotel
    $hotels = [
       [
          'name' => 'Hotel Belvedere',
@@ -62,21 +62,25 @@
 <body>
 
    <div class="container  mt-5">
-      <h1 class="mb-4">Lista degli Hotel</h1>
+      <h1 class="text-center  mb-4">Lista degli Hotel</h1>
 
-      <div class="d-flex">
+      <div class="d-flex  justify-content-center  flex-wrap">
 
          <?php foreach($hotels as $hotel): ?>
 
-         <div class="card  col-3">
+         <div class="card  col-3  p-3  m-3">
 
-            <p> <?php echo $hotel['name'] ?> </p>
-
+            <p class="fw-semibold  fs-4  text-center"> <?php echo $hotel['name'] ?> </p>
 
             <p> <?php echo $hotel['description'] ?> </p>
 
-
-            <p> <?php echo $hotel['parking'] ?> </p>
+            <!-- parcheggio -->
+            <?php if($hotel['parking'] === true): ?>
+            <p> Parcheggio Presente </p>
+            
+            <?php else: ?>
+            <p> Parcheggio NON Presente </p>
+            <?php endif ?>
 
 
             <p> <?php echo $hotel['vote'] ?> </p>
