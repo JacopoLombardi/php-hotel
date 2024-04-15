@@ -41,6 +41,21 @@
       ]
    ];
 
+
+   $select_parking = $_POST['parking'];
+   $select_rate = $_POST['rate'];
+
+   // (si/no) transform in (true/false)
+   if($select_parking === 'si'){
+      $select_parking = true;
+   }
+   else if($select_parking === 'no'){
+      $select_parking = false;
+   }
+
+   var_dump($select_parking);
+   var_dump($select_rate);
+
 ?>
 
 
@@ -64,34 +79,73 @@
    <div class="container  mt-5">
       <h1 class="text-center  mb-4">Lista degli Hotel</h1>
 
-      <div class="d-flex  justify-content-center  flex-wrap">
+      <!-- form -->
+      <form class="form" action="hotel_list.php" method="POST">
+
+         <div class="d-flex">
+            <!-- select parking -->
+            <div class="me-4">
+               <label>Parcheggio</label>
+               <select class="form-select" name="parking">
+                  <option value=""></option>
+                  <option value="si">si</option>
+                  <option value="no">no</option>
+               </select>
+            </div>
+
+            <!-- select rate -->
+            <div>
+               <label>Rate</label>
+               <select class="form-select" name="rate">
+                  <option value=""></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+               </select>
+            </div>
+         </div>
+
+         <button class="btn  btn-primary  mt-3" type="submit">Cerca</button>
+      </form>
+      
+
+
+      <!-- card -->
+      <div class="d-flex  justify-content-center  flex-wrap  mt-4">
 
          <?php foreach($hotels as $hotel): ?>
-
+         <?php if($select_rate < $hotel['vote']  ||  $select_parking === $hotel['parking']): ?>
+      
          <div class="card  col-3  p-3  m-3">
 
             <p class="fw-semibold  fs-4  text-center"> <?php echo $hotel['name'] ?> </p>
-
             <p> <?php echo $hotel['description'] ?> </p>
 
-            <!-- parcheggio -->
+            <!-- parking -->
             <?php if($hotel['parking'] === true): ?>
             <p> Parcheggio Presente </p>
-            
+
             <?php else: ?>
             <p> Parcheggio NON Presente </p>
             <?php endif ?>
-
+            <!-- \parking -->
 
             <p> <?php echo $hotel['vote'] ?> </p>
-
             <p> <?php echo $hotel['distance_to_center'] ?> </p>
 
          </div>
 
+         <?php endif ?>
          <?php endforeach ?>
 
       </div>
+
+      
+
+
+
    </div>
    
 </body>
