@@ -46,12 +46,9 @@
    $select_rate = $_POST['rate'];
 
    // (si/no) transform in (true/false)
-   if($select_parking === 'si'){
-      $select_parking = true;
-   }
-   else if($select_parking === 'no'){
-      $select_parking = false;
-   }
+   $select_parking === 'si' ? $select_parking = true : $select_parking;
+   $select_parking === 'no' ? $select_parking = false : $select_rate;
+
 
    var_dump($select_parking);
    var_dump($select_rate);
@@ -116,35 +113,31 @@
       <div class="d-flex  justify-content-center  flex-wrap  mt-4">
 
          <?php foreach($hotels as $hotel): ?>
-         <?php if($select_rate < $hotel['vote']  ||  $select_parking === $hotel['parking']): ?>
-      
-         <div class="card  col-3  p-3  m-3">
+            <?php if( ($select_rate <= $hotel['vote']  &&  $select_parking === $hotel['parking']) ): ?>
+         
+               <div class="card  col-3  p-3  m-3">
 
-            <p class="fw-semibold  fs-4  text-center"> <?php echo $hotel['name'] ?> </p>
-            <p> <?php echo $hotel['description'] ?> </p>
+                  <p class="fw-semibold  fs-4  text-center"> <?php echo $hotel['name'] ?> </p>
+                  <p> <?php echo $hotel['description'] ?> </p>
 
-            <!-- parking -->
-            <?php if($hotel['parking'] === true): ?>
-            <p> Parcheggio Presente </p>
+                  <!-- parking -->
+                  <?php if($hotel['parking'] === true): ?>
+                     <p> Parcheggio Presente </p>
 
-            <?php else: ?>
-            <p> Parcheggio NON Presente </p>
+                  <?php else: ?>
+                     <p> Parcheggio NON Presente </p>
+                  <?php endif ?>
+                  <!-- \parking -->
+
+                  <p> <?php echo $hotel['vote'] ?> </p>
+                  <p> <?php echo $hotel['distance_to_center'] ?> </p>
+
+               </div>
+
             <?php endif ?>
-            <!-- \parking -->
-
-            <p> <?php echo $hotel['vote'] ?> </p>
-            <p> <?php echo $hotel['distance_to_center'] ?> </p>
-
-         </div>
-
-         <?php endif ?>
          <?php endforeach ?>
 
       </div>
-
-      
-
-
 
    </div>
    
